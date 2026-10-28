@@ -3,277 +3,464 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avramidis Woodlab - Portfolio</title>
+    <title>Avramidis Woodlab - Custom Woodworking</title>
     <style>
-        /* Χρωματική Παλέτα */
+        /* Βασικές Μεταβλητές & Καθαρισμός */
         :root {
-            --brand-color: #c67116; 
-            --brand-hover: #a55d12;
-            --text-dark: #333333;
-            --bg-light: #f9f9f9;
+            --brand-orange: #c67116;
+            --brand-dark: #1a1a1a;
+            --brand-gray: #333333;
+            --brand-light: #f4f4f4;
             --white: #ffffff;
         }
 
         * {
-            box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            box-sizing: border-box;
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            scroll-behavior: smooth;
         }
 
         body {
-            background-color: var(--bg-light);
-            color: var(--text-dark);
+            color: var(--brand-gray);
+            background-color: var(--brand-light);
+            line-height: 1.6;
         }
 
-        /* Header Στυλ */
+        /* --- Navigation Bar --- */
         header {
-            background-color: var(--brand-color);
-            color: var(--white);
-            padding: 1rem 2rem;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            padding: 1.5rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            background-color: transparent;
+            z-index: 1000;
+            transition: background-color 0.3s, padding 0.3s, box-shadow 0.3s;
         }
 
-        header h1 {
-            font-size: 1.8rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
+        header.scrolled {
+            background-color: var(--brand-dark);
+            padding: 1rem 5%;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            font-size: 1.5rem;
             font-weight: 800;
+            color: var(--white);
+            text-decoration: none;
+            letter-spacing: 2px;
         }
 
-        .about-btn {
-            background-color: var(--white);
-            color: var(--brand-color);
-            border: none;
-            padding: 0.6rem 1.2rem;
-            font-size: 1rem;
+        .logo span {
+            color: var(--brand-orange);
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+
+        nav ul li a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: var(--brand-orange);
+        }
+
+        /* --- Hero Section --- */
+        .hero {
+            height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
+                        url('src/s4.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1rem;
+            letter-spacing: 1px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            animation: fadeInUp 1s ease;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--brand-orange);
+            color: var(--white);
+            text-decoration: none;
             font-weight: bold;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s, color 0.3s;
+            text-transform: uppercase;
+            border-radius: 3px;
+            transition: background-color 0.3s, transform 0.3s;
         }
 
-        .about-btn:hover {
-            background-color: #f1f1f1;
-            color: var(--brand-hover);
+        .btn:hover {
+            background-color: #a55d12;
+            transform: translateY(-3px);
         }
 
-        /* Κεντρικό Περιεχόμενο (Hero & Portfolio) */
-        main {
-            padding: 3rem 2rem;
+        /* --- Sections Γενικά --- */
+        section {
+            padding: 5rem 5%;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            color: var(--brand-dark);
+            margin-bottom: 3rem;
+            position: relative;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 3px;
+            background-color: var(--brand-orange);
+            margin: 10px auto 0;
+        }
+
+        /* --- Portfolio / Services Grid --- */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
             max-width: 1200px;
             margin: 0 auto;
         }
 
-        .hero {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .hero h2 {
-            font-size: 2.2rem;
-            color: var(--brand-color);
-            margin-bottom: 0.5rem;
-        }
-
-        /* Portfolio Grid */
-        .portfolio-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 1.5rem;
-        }
-
-        /* Στυλ Πλαισίων με Hover Effect */
         .portfolio-item {
             position: relative;
-            display: block;
-            height: 250px;
-            border-radius: 8px;
+            height: 350px;
             overflow: hidden;
             text-decoration: none;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s;
+            background-color: var(--brand-dark);
+            border-radius: 4px;
         }
 
-        .portfolio-item:hover {
-            transform: translateY(-5px);
-        }
-
-        /* Η φωτογραφία background (κρυφή αρχικά) */
-        .portfolio-item .bg-image {
+        .portfolio-item .bg-img {
             position: absolute;
-            top: 0; 
-            left: 0; 
-            width: 100%; 
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background-size: cover;
             background-position: center;
-            opacity: 0;
-            transition: opacity 0.4s ease-in-out;
-            z-index: 1;
+            transition: transform 0.6s ease, opacity 0.4s;
+            opacity: 0.7;
         }
 
-        .portfolio-item:hover .bg-image {
-            opacity: 1; /* Εμφανίζεται όταν το ποντίκι πάει πάνω */
+        .portfolio-item:hover .bg-img {
+            transform: scale(1.1);
+            opacity: 0.4; /* Σκοτεινιάζει στο hover */
         }
 
-        /* Το περιεχόμενο του πλαισίου (Τίτλος) */
         .portfolio-item .content {
             position: relative;
             z-index: 2;
-            width: 100%;
             height: 100%;
             display: flex;
-            align-items: center;
+            flex-direction: column;
             justify-content: center;
-            background-color: var(--brand-color); /* Πορτοκαλί αρχικά */
+            align-items: center;
             color: var(--white);
-            font-size: 1.6rem;
-            font-weight: bold;
-            transition: background-color 0.4s ease-in-out;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.4s ease;
         }
 
-        /* Σκούρο overlay στο hover για να διαβάζεται το κείμενο πάνω από τη φώτο */
         .portfolio-item:hover .content {
-            background-color: rgba(0, 0, 0, 0.4); 
+            opacity: 1;
+            transform: translateY(0);
         }
 
-        /* Στυλ Αναδυόμενου Παραθύρου (Modal) - About Us */
-        .modal {
-            display: none; 
-            position: fixed; 
-            z-index: 1000; 
-            left: 0;
-            top: 0;
-            width: 100%; 
-            height: 100%; 
-            overflow: auto; 
-            background-color: rgba(0,0,0,0.8); 
-            backdrop-filter: blur(5px);
+        .portfolio-item h3 {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            border-bottom: 2px solid var(--brand-orange);
+            padding-bottom: 5px;
         }
 
-        .modal-content {
-            background-color: var(--white);
-            margin: 10% auto; 
-            padding: 2rem;
-            border: 2px solid var(--brand-color);
-            border-radius: 8px;
-            width: 90%;
-            max-width: 500px;
-            position: relative;
-            text-align: center;
-            animation: fadeIn 0.3s;
-        }
-
-        .close {
-            color: #aaa;
+        /* Βασικοί τίτλοι που φαίνονται ΠΡΙΝ το hover (για usability) */
+        .portfolio-item .title-always {
             position: absolute;
-            top: 10px;
-            right: 20px;
-            font-size: 28px;
+            bottom: 20px;
+            left: 20px;
+            color: var(--white);
+            font-size: 1.5rem;
             font-weight: bold;
-            cursor: pointer;
-            z-index: 1001;
+            z-index: 1;
+            transition: opacity 0.3s;
         }
 
-        .close:hover,
-        .close:focus {
-            color: var(--brand-color);
-            text-decoration: none;
+        .portfolio-item:hover .title-always {
+            opacity: 0;
         }
 
-        .contact-info {
-            text-align: left;
-            margin-top: 1.5rem;
-            line-height: 1.8;
+        /* --- About Section --- */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            align-items: center;
         }
 
-        .contact-info strong {
-            color: var(--brand-color);
+        .about-text {
+            flex: 1;
+            min-width: 300px;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; transform: scale(0.9); }
-            to { opacity: 1; transform: scale(1); }
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.1rem;
+        }
+
+        .about-image {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 4px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        /* --- Footer / Contact --- */
+        footer {
+            background-color: var(--brand-dark);
+            color: var(--white);
+            padding: 4rem 5% 2rem;
+        }
+
+        .footer-content {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            justify-content: space-between;
+        }
+
+        .footer-col h4 {
+            color: var(--brand-orange);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .footer-col p {
+            margin-bottom: 0.5rem;
+            color: #ccc;
+        }
+
+        .footer-bottom {
+            text-align: center;
+            margin-top: 3rem;
+            padding-top: 1rem;
+            border-top: 1px solid #444;
+            color: #777;
+            font-size: 0.9rem;
+        }
+
+        /* Animations */
+        @keyframes fadeInDown {
+            from { opacity: 0; transform: translateY(-30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        @keyframes fadeInUp {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                display: none; /* Σε κανονικό site εδώ μπαίνει hamburger menu */
+            }
+            .hero h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <header>
-        <h1>Avramidis Woodlab</h1>
-        <button class="about-btn" id="aboutBtn">Σχετικά με εμάς</button>
+    <!-- Header & Navigation -->
+    <header id="header">
+        <a href="#" class="logo">AVRAMIDIS<span>WOODLAB</span></a>
+        <nav>
+            <ul>
+                <li><a href="#home">Αρχικη</a></li>
+                <li><a href="#services">Έργα</a></li>
+                <li><a href="#about">Σχετικα</a></li>
+                <li><a href="#contact">Επικοινωνια</a></li>
+            </ul>
+        </nav>
     </header>
 
-    <main>
-        <div class="hero">
-            <h2>Η τέχνη του ξύλου</h2>
-            <p>Δημιουργούμε έπιπλα υψηλής ποιότητας και αισθητικής για κάθε χώρο.</p>
-        </div>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <h1>Η Τέχνη του Ξύλου</h1>
+        <p>Σχεδιάζουμε και κατασκευάζουμε έπιπλα, ντουλάπες και κουζίνες υψηλής αισθητικής, προσαρμοσμένα απόλυτα στον χώρο σας.</p>
+        <a href="#services" class="btn">Δειτε τα Εργα Μας</a>
+    </section>
 
-        <section class="portfolio-grid">
-            <!-- Κατηγορία 1: Πηγαίνει στο epipla.html -->
-            <a href="epipla.html" class="portfolio-item">
-                <div class="bg-image" style="background-image: url('https://via.placeholder.com/600x400/c67116/ffffff?text=Epipla_Background');"></div>
-                <div class="content">Έπιπλα</div>
-            </a>
+    <!-- Services / Portfolio Section -->
+    <section id="services">
+        <h2 class="section-title">Τα Έργα Μας</h2>
+        <div class="portfolio-grid">
             
-            <!-- Κατηγορία 2: Πηγαίνει στο ntoulapes.html -->
-            <a href="ntoulapes.html" class="portfolio-item">
-                <div class="bg-image" style="background-image: url('https://via.placeholder.com/600x400/c67116/ffffff?text=Ntoulapes_Background');"></div>
-                <div class="content">Ντουλάπες</div>
+            <!-- Κατηγορία: Έπιπλα -->
+            <a href="epipla.html" class="portfolio-item" id="epipla-box">
+                <div class="bg-img" id="epipla-bg"></div>
+                <div class="title-always">Έπιπλα</div>
+                <div class="content">
+                    <h3>Έπιπλα</h3>
+                    <p>Δείτε περισσότερα</p>
+                </div>
             </a>
 
-            <!-- Κατηγορία 3: Πηγαίνει στο kouzines.html -->
-            <a href="kouzines.html" class="portfolio-item">
-                <div class="bg-image" style="background-image: url('https://via.placeholder.com/600x400/c67116/ffffff?text=Kouzines_Background');"></div>
-                <div class="content">Κουζίνες</div>
+            <!-- Κατηγορία: Ντουλάπες -->
+            <a href="ntoulapes.html" class="portfolio-item" id="ntoulapes-box">
+                <div class="bg-img" id="ntoulapes-bg"></div>
+                <div class="title-always">Ντουλάπες</div>
+                <div class="content">
+                    <h3>Ντουλάπες</h3>
+                    <p>Δείτε περισσότερα</p>
+                </div>
             </a>
 
-            <!-- Κατηγορία 4: Πηγαίνει στο ksilourgikes-ergasies.html -->
-            <a href="ksilourgikes-ergasies.html" class="portfolio-item">
-                <div class="bg-image" style="background-image: url('https://via.placeholder.com/600x400/c67116/ffffff?text=Ergasies_Background');"></div>
-                <div class="content">Ξυλουργικές Εργασίες</div>
+            <!-- Κατηγορία 3 -->
+            <a href="kouzines.html" class="portfolio-item" id="kouzines-box">
+                <div class="bg-img" id="kouzines-bg"></div>
+                <div class="title-always">Κουζίνες</div>
+                <div class="content">
+                    <h3>Κουζίνες</h3>
+                    <p>Δείτε περισσότερα</p>
+                </div>
             </a>
-        </section>
-    </main>
 
-    <!-- Modal Σχετικά με εμάς -->
-    <div id="aboutModal" class="modal">
-        <div class="modal-content">
-            <span class="close" id="closeAbout">&times;</span>
-            <h2 style="color: var(--brand-color);">Avramidis Woodlab</h2>
-            <div class="contact-info">
-                <p><strong>Διεύθυνση:</strong> [Οδός Placeholder 123, Πόλη]</p>
-                <p><strong>Τηλέφωνο:</strong> [+30 2310 123456]</p>
-                <p><strong>Email:</strong> [info@avramidiswoodlab.gr]</p>
-                <p><strong>Ωράριο:</strong> Δευτέρα - Παρασκευή: 09:00 - 17:00</p>
-                <p style="margin-top: 1rem;">Στο Avramidis Woodlab συνδυάζουμε την παραδοσιακή ξυλουργική τέχνη με το σύγχρονο design. Κατασκευάζουμε ντουλάπες, κουζίνες, έπιπλα και ειδικές κατασκευές κατά παραγγελία, προσαρμοσμένες απόλυτα στις δικές σας ανάγκες.</p>
+            <!-- Κατηγορία 4 -->
+           <a href="syntheta.html" class="portfolio-item" id="syntheta-box">
+                <div class="bg-img" id="syntheta-bg"></div>
+                <div class="title-always">Σύνθετα</div>
+                <div class="content">
+                    <h3>Σύνθετα</h3>
+                    <p>Δείτε περισσότερα</p>
+                </div>
+            </a>
+
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" style="background-color: var(--white);">
+        <h2 class="section-title">Σχετικά Με Εμάς</h2>
+        <div class="about-content">
+            <div class="about-image">
+                <img src="src/logo.jpg" alt="Το Εργαστήριό μας">
+            </div>
+            <div class="about-text">
+                <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--brand-dark);">Ποιότητα & Λεπτομέρεια</h3>
+                <p>Στο <strong>Avramidis Woodlab</strong>, η ξυλουργική δεν είναι απλώς μια δουλειά, είναι το πάθος μας. Με πολυετή εμπειρία στον χώρο του ξύλου, αναλαμβάνουμε τον πλήρη σχεδιασμό και την κατασκευή για τον οικιακό ή επαγγελματικό σας χώρο.</p>
+                <p>Χρησιμοποιούμε υλικά κορυφαίας ποιότητας, συνδυάζοντας παραδοσιακές τεχνικές με σύγχρονο μηχανολογικό εξοπλισμό, ώστε το αποτέλεσμα να είναι άρτιο, ανθεκτικό στον χρόνο και απόλυτα εναρμονισμένο με το προσωπικό σας γούστο.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- JavaScript μόνο για το Modal Επικοινωνίας -->
+    <!-- Footer / Contact Section -->
+    <footer id="contact">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h4>Avramidis Woodlab</h4>
+                <p>Custom Woodworking & Design</p>
+                <p style="margin-top: 1rem;">Ακολουθήστε μας:</p>
+                <p>
+                    <a href="https://www.instagram.com/avramidis_woodlab/" style="color: #ccc; text-decoration: none; margin-right: 10px;">Instagram</a>
+                </p>
+            </div>
+            <div class="footer-col">
+                <h4>Επικοινωνία</h4>
+                <p>  <a href="https://maps.app.goo.gl/xhuZqXEkmLkNC3T28" style="color: #ccc; text-decoration: none; margin-right: 10px;">📍 Διαλογή, Θεσσαλονίκη, 57008</a></p>  
+                <p>📞 +30 6985992118</p>
+                <p>📞 +30 6937526419</p>
+                <p>✉️ avramidiswoodlab@gmail.com</p>
+            </div>
+            <div class="footer-col">
+                <h4>Ωράριο Λειτουργίας</h4>
+                <p>Δευτέρα - Σάββατο: 08:00 - 21:00</p>
+                <p>Κυριακή: Κλειστά</p>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            &copy; 1974 Avramidis Woodlab. All rights reserved.
+        </div>
+    </footer>
+
+    <!-- JavaScript για το Navbar Effect (γίνεται σκούρο στο scroll) -->
     <script>
-        const aboutModal = document.getElementById('aboutModal');
-        const aboutBtn = document.getElementById('aboutBtn');
-        const closeAbout = document.getElementById('closeAbout');
-
-        aboutBtn.onclick = function() {
-            aboutModal.style.display = 'block';
-        }
-        closeAbout.onclick = function() {
-            aboutModal.style.display = 'none';
-        }
-
-        window.onclick = function(event) {
-            if (event.target == aboutModal) {
-                aboutModal.style.display = 'none';
+        window.addEventListener('scroll', function() {
+            const header = document.getElementById('header');
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
             }
-        }
+        });
+        document.addEventListener('DOMContentLoaded', function() {
+            
+            // Ντουλάπες (Υποθέτουμε 4 εικόνες)
+            const ntoulapesBg = document.getElementById('ntoulapes-bg');
+            if (ntoulapesBg) {
+                const randomNtoulapa = Math.floor(Math.random() * 4) + 1;
+                ntoulapesBg.style.backgroundImage = `url('src/w${randomNtoulapa}.jpg')`;
+            }
+
+            // Έπιπλα (Υποθέτουμε 4 εικόνες, άλλαξε το 4 αν έχεις περισσότερες/λιγότερες)
+            const epiplaBg = document.getElementById('epipla-bg');
+            if (epiplaBg) {
+                const randomEpiplo = Math.floor(Math.random() * 4) + 1;
+                epiplaBg.style.backgroundImage = `url('src/e${randomEpiplo}.jpg')`;
+            }
+            // --- Τυχαίο background στις Κουζίνες (1 έως 6) ---
+            const kouzinesBg = document.getElementById('kouzines-bg');
+            if (kouzinesBg) {
+                const randomImageNumber = Math.floor(Math.random() * 6) + 1;
+                kouzinesBg.style.backgroundImage = `url('src/k${randomImageNumber}.jpg')`;
+            }
+
+            // --- Τυχαίο background στα Σύνθετα (1 έως 4) ---
+            const synthetaBg = document.getElementById('syntheta-bg');
+            if (synthetaBg) {
+                const randomSyntheto = Math.floor(Math.random() * 4) + 1;
+                synthetaBg.style.backgroundImage = `url('src/s${randomSyntheto}.jpg')`;
+            }
+            
+        });
     </script>
 </body>
 </html>
