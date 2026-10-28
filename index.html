@@ -1,9 +1,312 @@
 <!DOCTYPE html>
-<htlml>
-<title> woodlab
-</title>
-<h1> Ιστοσελίδα Πάνου Αβραμίδη</h1>
+<html lang="el">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Avramidis Woodlab</title>
+    <style>
+        /* Χρωματική Παλέτα βασισμένη στο λογότυπο */
+        :root {
+            --brand-color: #c67116; /* Το πορτοκαλί του λογοτύπου */
+            --brand-hover: #a55d12;
+            --text-dark: #333333;
+            --bg-light: #f9f9f9;
+            --white: #ffffff;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+        }
+
+        /* Header Στυλ */
+        header {
+            background-color: var(--brand-color);
+            color: var(--white);
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        header h1 {
+            font-size: 1.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            font-weight: 800;
+        }
+
+        .about-btn {
+            background-color: var(--white);
+            color: var(--brand-color);
+            border: none;
+            padding: 0.6rem 1.2rem;
+            font-size: 1rem;
+            font-weight: bold;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .about-btn:hover {
+            background-color: #f1f1f1;
+            color: var(--brand-hover);
+        }
+
+        /* Κεντρικό Περιεχόμενο (Hero & Portfolio) */
+        main {
+            padding: 3rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .hero {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            color: var(--brand-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Portfolio Grid */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 8px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            background-color: var(--white);
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .portfolio-item .overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(198, 113, 22, 0.9); /* Ημιδιάφανο χρώμα λογοτύπου */
+            color: var(--white);
+            padding: 1rem;
+            text-align: center;
+            font-size: 1.2rem;
+            font-weight: bold;
+        }
+
+        /* Στυλ Αναδυόμενων Παραθύρων (Modals) */
+        .modal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000; 
+            left: 0;
+            top: 0;
+            width: 100%; 
+            height: 100%; 
+            overflow: auto; 
+            background-color: rgba(0,0,0,0.8); 
+            backdrop-filter: blur(5px);
+        }
+
+        .modal-content {
+            background-color: var(--white);
+            margin: 10% auto; 
+            padding: 2rem;
+            border: 2px solid var(--brand-color);
+            border-radius: 8px;
+            width: 90%;
+            max-width: 500px;
+            position: relative;
+            text-align: center;
+            animation: fadeIn 0.3s;
+        }
+
+        /* Ειδικά για το modal της εικόνας */
+        .image-modal-content {
+            background-color: transparent;
+            border: none;
+            max-width: 800px;
+            margin: 5% auto;
+            padding: 0;
+        }
+
+        .image-modal-content img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
+        }
+
+        .close {
+            color: #aaa;
+            position: absolute;
+            top: 10px;
+            right: 20px;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        .image-modal-content .close {
+            color: var(--white);
+            right: 0;
+            top: -40px;
+            font-size: 35px;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: var(--brand-color);
+            text-decoration: none;
+        }
+        
+        .image-modal-content .close:hover {
+            color: #ccc;
+        }
+
+        .contact-info {
+            text-align: left;
+            margin-top: 1.5rem;
+            line-height: 1.8;
+        }
+
+        .contact-info strong {
+            color: var(--brand-color);
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+    </style>
+</head>
 <body>
-    <h2> EST 2026</h2>
+
+    <header>
+        <h1>Avramidis Woodlab</h1>
+        <button class="about-btn" id="aboutBtn">Σχετικά με εμάς</button>
+    </header>
+
+    <main>
+        <div class="hero">
+            <h2>Η τέχνη του ξύλου</h2>
+            <p>Δημιουργούμε έπιπλα υψηλής ποιότητας και αισθητικής για κάθε χώρο.</p>
+        </div>
+
+        <section class="portfolio-grid">
+            <!-- Κατηγορία 1 -->
+            <div class="portfolio-item" onclick="openImageModal('https://via.placeholder.com/800x600/c67116/ffffff?text=Έπιπλα')">
+                <img src="https://via.placeholder.com/400x300/c67116/ffffff?text=Έπιπλα" alt="Έπιπλα">
+                <div class="overlay">Έπιπλα</div>
+            </div>
+            
+            <!-- Κατηγορία 2 -->
+            <div class="portfolio-item" onclick="openImageModal('https://via.placeholder.com/800x600/c67116/ffffff?text=Ντουλάπες')">
+                <img src="https://via.placeholder.com/400x300/c67116/ffffff?text=Ντουλάπες" alt="Ντουλάπες">
+                <div class="overlay">Ντουλάπες</div>
+            </div>
+
+            <!-- Κατηγορία 3 -->
+            <div class="portfolio-item" onclick="openImageModal('https://via.placeholder.com/800x600/c67116/ffffff?text=Κουζίνες')">
+                <img src="https://via.placeholder.com/400x300/c67116/ffffff?text=Κουζίνες" alt="Κουζίνες">
+                <div class="overlay">Κουζίνες</div>
+            </div>
+
+            <!-- Κατηγορία 4 -->
+            <div class="portfolio-item" onclick="openImageModal('https://via.placeholder.com/800x600/c67116/ffffff?text=Ειδικές+Κατασκευές')">
+                <img src="https://via.placeholder.com/400x300/c67116/ffffff?text=Ειδικές+Κατασκευές" alt="Μαραγκός - Ξυλουργικές Εργασίες">
+                <div class="overlay">Ξυλουργικές Εργασίες</div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Modal Σχετικά με εμάς -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <span class="close" id="closeAbout">&times;</span>
+            <h2 style="color: var(--brand-color);">Avramidis Woodlab</h2>
+            <div class="contact-info">
+                <p><strong>Διεύθυνση:</strong> [Οδός Placeholder 123, Πόλη]</p>
+                <p><strong>Τηλέφωνο:</strong> [+30 2310 123456]</p>
+                <p><strong>Email:</strong> [info@avramidiswoodlab.gr]</p>
+                <p><strong>Ωράριο:</strong> Δευτέρα - Παρασκευή: 09:00 - 17:00</p>
+                <p style="margin-top: 1rem;">Στο Avramidis Woodlab συνδυάζουμε την παραδοσιακή ξυλουργική τέχνη με το σύγχρονο design. Κατασκευάζουμε ντουλάπες, κουζίνες, έπιπλα και ειδικές κατασκευές κατά παραγγελία, προσαρμοσμένες απόλυτα στις δικές σας ανάγκες.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Προβολής Εικόνας -->
+    <div id="imageModal" class="modal">
+        <div class="modal-content image-modal-content">
+            <span class="close" id="closeImage">&times;</span>
+            <img id="modalImg" src="" alt="Προβολή Έργου">
+        </div>
+    </div>
+
+    <!-- JavaScript για την λειτουργία των Modals -->
+    <script>
+        // Modal Σχετικά με εμάς
+        const aboutModal = document.getElementById('aboutModal');
+        const aboutBtn = document.getElementById('aboutBtn');
+        const closeAbout = document.getElementById('closeAbout');
+
+        aboutBtn.onclick = function() {
+            aboutModal.style.display = 'block';
+        }
+        closeAbout.onclick = function() {
+            aboutModal.style.display = 'none';
+        }
+
+        // Modal Εικόνων
+        const imageModal = document.getElementById('imageModal');
+        const modalImg = document.getElementById('modalImg');
+        const closeImage = document.getElementById('closeImage');
+
+        function openImageModal(imageSrc) {
+            imageModal.style.display = 'block';
+            modalImg.src = imageSrc;
+        }
+
+        closeImage.onclick = function() {
+            imageModal.style.display = 'none';
+        }
+
+        // Κλείσιμο των modals αν ο χρήστης κάνει κλικ έξω από αυτά
+        window.onclick = function(event) {
+            if (event.target == aboutModal) {
+                aboutModal.style.display = 'none';
+            }
+            if (event.target == imageModal) {
+                imageModal.style.display = 'none';
+            }
+        }
+    </script>
 </body>
-</htlml>
+</html>
