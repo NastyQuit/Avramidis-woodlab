@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Avramidis Woodlab</title>
+    <title>Avramidis Woodlab - Portfolio</title>
     <style>
-        /* Χρωματική Παλέτα βασισμένη στο λογότυπο */
+        /* Χρωματική Παλέτα */
         :root {
-            --brand-color: #c67116; /* Το πορτοκαλί του λογοτύπου */
+            --brand-color: #c67116; 
             --brand-hover: #a55d12;
             --text-dark: #333333;
             --bg-light: #f9f9f9;
@@ -86,42 +86,62 @@
             gap: 1.5rem;
         }
 
+        /* Στυλ Πλαισίων με Hover Effect */
         .portfolio-item {
             position: relative;
+            display: block;
+            height: 250px;
             border-radius: 8px;
             overflow: hidden;
-            cursor: pointer;
+            text-decoration: none;
             box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            transition: transform 0.3s, box-shadow 0.3s;
-            background-color: var(--white);
+            transition: transform 0.3s;
         }
 
         .portfolio-item:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 16px rgba(0,0,0,0.2);
         }
 
-        .portfolio-item img {
-            width: 100%;
-            height: 250px;
-            object-fit: cover;
-            display: block;
-        }
-
-        .portfolio-item .overlay {
+        /* Η φωτογραφία background (κρυφή αρχικά) */
+        .portfolio-item .bg-image {
             position: absolute;
-            bottom: 0;
-            left: 0;
-            right: 0;
-            background: rgba(198, 113, 22, 0.9); /* Ημιδιάφανο χρώμα λογοτύπου */
-            color: var(--white);
-            padding: 1rem;
-            text-align: center;
-            font-size: 1.2rem;
-            font-weight: bold;
+            top: 0; 
+            left: 0; 
+            width: 100%; 
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 0.4s ease-in-out;
+            z-index: 1;
         }
 
-        /* Στυλ Αναδυόμενων Παραθύρων (Modals) */
+        .portfolio-item:hover .bg-image {
+            opacity: 1; /* Εμφανίζεται όταν το ποντίκι πάει πάνω */
+        }
+
+        /* Το περιεχόμενο του πλαισίου (Τίτλος) */
+        .portfolio-item .content {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--brand-color); /* Πορτοκαλί αρχικά */
+            color: var(--white);
+            font-size: 1.6rem;
+            font-weight: bold;
+            transition: background-color 0.4s ease-in-out;
+        }
+
+        /* Σκούρο overlay στο hover για να διαβάζεται το κείμενο πάνω από τη φώτο */
+        .portfolio-item:hover .content {
+            background-color: rgba(0, 0, 0, 0.4); 
+        }
+
+        /* Στυλ Αναδυόμενου Παραθύρου (Modal) - About Us */
         .modal {
             display: none; 
             position: fixed; 
@@ -148,21 +168,6 @@
             animation: fadeIn 0.3s;
         }
 
-        /* Ειδικά για το modal της εικόνας */
-        .image-modal-content {
-            background-color: transparent;
-            border: none;
-            max-width: 800px;
-            margin: 5% auto;
-            padding: 0;
-        }
-
-        .image-modal-content img {
-            width: 100%;
-            border-radius: 8px;
-            box-shadow: 0 8px 24px rgba(0,0,0,0.5);
-        }
-
         .close {
             color: #aaa;
             position: absolute;
@@ -173,22 +178,11 @@
             cursor: pointer;
             z-index: 1001;
         }
-        
-        .image-modal-content .close {
-            color: var(--white);
-            right: 0;
-            top: -40px;
-            font-size: 35px;
-        }
 
         .close:hover,
         .close:focus {
             color: var(--brand-color);
             text-decoration: none;
-        }
-        
-        .image-modal-content .close:hover {
-            color: #ccc;
         }
 
         .contact-info {
@@ -221,29 +215,29 @@
         </div>
 
         <section class="portfolio-grid">
-            <!-- Κατηγορία 1 -->
-            <div class="portfolio-item" onclick="openImageModal('https://via.placeholder.com/800x600/c67116/ffffff?text=Έπιπλα')">
-                <img src="https://via.placeholder.com/400x300/c67116/ffffff?text=Έπιπλα" alt="Έπιπλα">
-                <div class="overlay">Έπιπλα</div>
-            </div>
+            <!-- Κατηγορία 1: Πηγαίνει στο epipla.html -->
+            <a href="epipla.html" class="portfolio-item">
+                <div class="bg-image" style="background-image: url('https://via.placeholder.com/600x400/c67116/ffffff?text=Epipla_Background');"></div>
+                <div class="content">Έπιπλα</div>
+            </a>
             
-            <!-- Κατηγορία 2 -->
-            <div class="portfolio-item" onclick="openImageModal('https://via.placeholder.com/800x600/c67116/ffffff?text=Ντουλάπες')">
-                <img src="https://via.placeholder.com/400x300/c67116/ffffff?text=Ντουλάπες" alt="Ντουλάπες">
-                <div class="overlay">Ντουλάπες</div>
-            </div>
+            <!-- Κατηγορία 2: Πηγαίνει στο ntoulapes.html -->
+            <a href="ntoulapes.html" class="portfolio-item">
+                <div class="bg-image" style="background-image: url('https://via.placeholder.com/600x400/c67116/ffffff?text=Ntoulapes_Background');"></div>
+                <div class="content">Ντουλάπες</div>
+            </a>
 
-            <!-- Κατηγορία 3 -->
-            <div class="portfolio-item" onclick="openImageModal('https://via.placeholder.com/800x600/c67116/ffffff?text=Κουζίνες')">
-                <img src="https://via.placeholder.com/400x300/c67116/ffffff?text=Κουζίνες" alt="Κουζίνες">
-                <div class="overlay">Κουζίνες</div>
-            </div>
+            <!-- Κατηγορία 3: Πηγαίνει στο kouzines.html -->
+            <a href="kouzines.html" class="portfolio-item">
+                <div class="bg-image" style="background-image: url('https://via.placeholder.com/600x400/c67116/ffffff?text=Kouzines_Background');"></div>
+                <div class="content">Κουζίνες</div>
+            </a>
 
-            <!-- Κατηγορία 4 -->
-            <div class="portfolio-item" onclick="openImageModal('https://via.placeholder.com/800x600/c67116/ffffff?text=Ειδικές+Κατασκευές')">
-                <img src="https://via.placeholder.com/400x300/c67116/ffffff?text=Ειδικές+Κατασκευές" alt="Μαραγκός - Ξυλουργικές Εργασίες">
-                <div class="overlay">Ξυλουργικές Εργασίες</div>
-            </div>
+            <!-- Κατηγορία 4: Πηγαίνει στο ksilourgikes-ergasies.html -->
+            <a href="ksilourgikes-ergasies.html" class="portfolio-item">
+                <div class="bg-image" style="background-image: url('https://via.placeholder.com/600x400/c67116/ffffff?text=Ergasies_Background');"></div>
+                <div class="content">Ξυλουργικές Εργασίες</div>
+            </a>
         </section>
     </main>
 
@@ -262,17 +256,8 @@
         </div>
     </div>
 
-    <!-- Modal Προβολής Εικόνας -->
-    <div id="imageModal" class="modal">
-        <div class="modal-content image-modal-content">
-            <span class="close" id="closeImage">&times;</span>
-            <img id="modalImg" src="" alt="Προβολή Έργου">
-        </div>
-    </div>
-
-    <!-- JavaScript για την λειτουργία των Modals -->
+    <!-- JavaScript μόνο για το Modal Επικοινωνίας -->
     <script>
-        // Modal Σχετικά με εμάς
         const aboutModal = document.getElementById('aboutModal');
         const aboutBtn = document.getElementById('aboutBtn');
         const closeAbout = document.getElementById('closeAbout');
@@ -284,27 +269,9 @@
             aboutModal.style.display = 'none';
         }
 
-        // Modal Εικόνων
-        const imageModal = document.getElementById('imageModal');
-        const modalImg = document.getElementById('modalImg');
-        const closeImage = document.getElementById('closeImage');
-
-        function openImageModal(imageSrc) {
-            imageModal.style.display = 'block';
-            modalImg.src = imageSrc;
-        }
-
-        closeImage.onclick = function() {
-            imageModal.style.display = 'none';
-        }
-
-        // Κλείσιμο των modals αν ο χρήστης κάνει κλικ έξω από αυτά
         window.onclick = function(event) {
             if (event.target == aboutModal) {
                 aboutModal.style.display = 'none';
-            }
-            if (event.target == imageModal) {
-                imageModal.style.display = 'none';
             }
         }
     </script>
