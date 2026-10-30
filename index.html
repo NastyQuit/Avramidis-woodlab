@@ -84,7 +84,7 @@
         .hero {
             height: 100vh;
             background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('src/s4.jpg') center/cover no-repeat;
+                        url('src/syntheta/s4.jpg') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -382,7 +382,7 @@
         <h2 class="section-title">Σχετικά Με Εμάς</h2>
         <div class="about-content">
             <div class="about-image">
-                <img src="src/logo.jpg" alt="Το Εργαστήριό μας">
+                <img src="src/logo.jpg" alt="Το Εργαστήριο μας">
             </div>
             <div class="about-text">
                 <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--brand-dark);">Ποιότητα & Λεπτομέρεια</h3>
@@ -432,34 +432,65 @@
             }
         });
         document.addEventListener('DOMContentLoaded', function() {
-            
+            const scrollBtn = document.querySelector('.hero .btn');
+            if (scrollBtn) {
+                scrollBtn.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    const targetSection = document.getElementById('services');
+                    const targetPosition = targetSection.offsetTop + (targetSection.offsetHeight / 2) - (window.innerHeight / 2);
+                    const startPosition = window.pageYOffset;
+                    const distance = targetPosition - startPosition;
+
+                    let duration = 1500; // Διάρκεια σε milliseconds (1.5 δευτερόλεπτο)
+                    let startTime = null;
+
+                    function animation(currentTime) {
+                        if (startTime === null) startTime = currentTime;
+                        const timeElapsed = currentTime - startTime;
+                        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+                        window.scrollTo(0, run);
+                        if (timeElapsed < duration) {
+                            requestAnimationFrame(animation);
+                        }
+                    }
+
+                    function easeInOutQuad(t, b, c, d) {
+                        t /= d / 2;
+                        if (t < 1) return c / 2 * t * t + b;
+                        t--;
+                        return -c / 2 * (t * (t - 2) - 1) + b;
+                    }
+
+                    requestAnimationFrame(animation);
+                });
+            }
+
             // Ντουλάπες (Υποθέτουμε 4 εικόνες)
             const ntoulapesBg = document.getElementById('ntoulapes-bg');
             if (ntoulapesBg) {
                 const randomNtoulapa = Math.floor(Math.random() * 4) + 1;
-                ntoulapesBg.style.backgroundImage = `url('src/w${randomNtoulapa}.jpg')`;
+                ntoulapesBg.style.backgroundImage = `url('src/ntoulapes/w${randomNtoulapa}.jpg')`;
             }
 
             // Έπιπλα (Υποθέτουμε 4 εικόνες, άλλαξε το 4 αν έχεις περισσότερες/λιγότερες)
             const epiplaBg = document.getElementById('epipla-bg');
             if (epiplaBg) {
                 const randomEpiplo = Math.floor(Math.random() * 4) + 1;
-                epiplaBg.style.backgroundImage = `url('src/e${randomEpiplo}.jpg')`;
+                epiplaBg.style.backgroundImage = `url('src/epipla/e${randomEpiplo}.jpg')`;
             }
             // --- Τυχαίο background στις Κουζίνες (1 έως 6) ---
             const kouzinesBg = document.getElementById('kouzines-bg');
             if (kouzinesBg) {
                 const randomImageNumber = Math.floor(Math.random() * 6) + 1;
-                kouzinesBg.style.backgroundImage = `url('src/k${randomImageNumber}.jpg')`;
+                kouzinesBg.style.backgroundImage = `url('src/kouzines/k${randomImageNumber}.jpg')`;
             }
 
             // --- Τυχαίο background στα Σύνθετα (1 έως 4) ---
             const synthetaBg = document.getElementById('syntheta-bg');
             if (synthetaBg) {
                 const randomSyntheto = Math.floor(Math.random() * 4) + 1;
-                synthetaBg.style.backgroundImage = `url('src/s${randomSyntheto}.jpg')`;
+                synthetaBg.style.backgroundImage = `url('src/syntheta/s${randomSyntheto}.jpg')`;
             }
-            
         });
     </script>
 </body>

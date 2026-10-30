@@ -20,35 +20,46 @@
             overflow: hidden; /* Αποτρέπει το κάθετο scroll */
         }
 
-        /* Top Bar με κουμπί επιστροφής */
+        /* Top Bar με απόλυτη ασφάλεια κατά των επικαλύψεων */
         .top-bar {
             position: absolute;
             top: 0;
+            left: 0;
             width: 100%;
-            padding: 1.5rem;
+            padding: 1.5rem 2rem;
             display: flex;
             justify-content: space-between;
             align-items: center;
             z-index: 10;
+            box-sizing: border-box;
+            background: linear-gradient(to bottom, rgba(0,0,0,0.8), transparent);
         }
 
         .top-bar h1 {
             color: var(--white);
-            font-size: 1.5rem;
+            font-size: 1.2rem;
             margin: 0;
             font-weight: 300;
             letter-spacing: 1px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            flex-wrap: nowrap;
+            white-space: nowrap;
         }
 
         .close-btn {
             color: var(--white);
             text-decoration: none;
-            font-size: 1rem;
+            font-size: 0.9rem;
             text-transform: uppercase;
             padding: 8px 16px;
             border: 1px solid var(--white);
             border-radius: 4px;
             transition: all 0.3s;
+            white-space: nowrap;
+            background-color: rgba(0,0,0,0.3);
+            flex-shrink: 0;
         }
 
         .close-btn:hover {
@@ -114,16 +125,13 @@
     <div class="top-bar">
         <h1>AVRAMIDIS WOODLAB | <strong>Κουζίνες</strong></h1>
         <!-- Επειδή ανοίγει σε νέο παράθυρο, το κουμπί μπορεί απλά να κλείνει το tab -->
-        <div class="top-bar">
-        <h1>AVRAMIDIS WOODLAB | <strong>Κουζίνες</strong></h1> <!-- (ή Σύνθετα αντίστοιχα) -->
-        <a href="index.html" class="close-btn">&#8592; Επιστροφη</a>
-    </div>
+        <a href="index.html" class="close-btn">&#8592; Επιστροφή</a>
     </div>
 
     <div class="slider-container">
         <button class="nav-btn prev" id="prevBtn">&#10094;</button>
         
-        <img id="main-slider-img" class="slider-image" src="src/k1.jpg" alt="Κουζίνα">
+        <img id="main-slider-img" class="slider-image" src="src/kouzines/k1.jpg" alt="Κουζίνα">
         
         <button class="nav-btn next" id="nextBtn">&#10095;</button>
 
@@ -133,12 +141,13 @@
     <script>
         // Array με τα paths των 6 εικόνων
         const images = [
-            'src/k1.jpg',
-            'src/k2.jpg',
-            'src/k3.jpg',
-            'src/k4.jpg',
-            'src/k5.jpg',
-            'src/k6.jpg'
+            'src/kouzines/k1.jpg',
+            'src/kouzines/k2.jpg',
+            'src/kouzines/k3.jpg',
+            'src/kouzines/k4.jpg',
+            'src/kouzines/k5.jpg',
+            'src/kouzines/k6.jpg',
+            'src/kouzines/k7.jpg'
         ];
 
         let currentIndex = 0;
