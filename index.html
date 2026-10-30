@@ -1,16 +1,25 @@
 <!DOCTYPE html>
 <html lang="el">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Avramidis Woodlab - Custom Woodworking</title>
+
+    <!-- Προσθήκη Google Fonts: Playfair Display για τίτλους & Lato για κείμενο -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+
     <style>
         /* Βασικές Μεταβλητές & Καθαρισμός */
         :root {
             --brand-orange: #c67116;
             --brand-dark: #1a1a1a;
-            --brand-gray: #333333;
-            --brand-light: #f4f4f4;
+            --brand-gray: #4a4a4a;
+            --brand-light: #f8f9fa;
             --white: #ffffff;
         }
 
@@ -18,14 +27,23 @@
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-            scroll-behavior: smooth;
         }
 
         body {
+            font-family: 'Lato', sans-serif;
             color: var(--brand-gray);
             background-color: var(--brand-light);
-            line-height: 1.6;
+            line-height: 1.7;
+            font-size: 16px;
+        }
+
+        /* Εφαρμογή γραμματοσειράς Playfair Display στους τίτλους */
+        h1,
+        h2,
+        h3,
+        h4,
+        .logo {
+            font-family: 'Playfair Display', serif;
         }
 
         /* --- Navigation Bar --- */
@@ -40,40 +58,44 @@
             align-items: center;
             background-color: transparent;
             z-index: 1000;
-            transition: background-color 0.3s, padding 0.3s, box-shadow 0.3s;
+            transition: background-color 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
         }
 
         header.scrolled {
-            background-color: var(--brand-dark);
+            background-color: rgba(26, 26, 26, 0.95);
+            backdrop-filter: blur(5px);
             padding: 1rem 5%;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.5);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
         }
 
         .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
+            font-size: 1.8rem;
+            font-weight: 700;
             color: var(--white);
             text-decoration: none;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
         .logo span {
             color: var(--brand-orange);
+            font-style: italic;
         }
 
         nav ul {
             list-style: none;
             display: flex;
-            gap: 2rem;
+            gap: 2.5rem;
         }
 
         nav ul li a {
             color: var(--white);
             text-decoration: none;
-            font-weight: 500;
-            font-size: 0.9rem;
+            font-weight: 400;
+            font-size: 0.95rem;
             text-transform: uppercase;
-            transition: color 0.3s;
+            letter-spacing: 1px;
+            transition: color 0.3s ease;
+            position: relative;
         }
 
         nav ul li a:hover {
@@ -83,8 +105,8 @@
         /* --- Hero Section --- */
         .hero {
             height: 100vh;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), 
-                        url('src/syntheta/s4.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(26, 26, 26, 0.75), rgba(26, 26, 26, 0.75)),
+                url('src/syntheta/s4.jpg') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -95,88 +117,117 @@
         }
 
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1rem;
+            font-size: 4.5rem;
+            font-weight: 700;
+            margin-bottom: 1.2rem;
             letter-spacing: 1px;
-            animation: fadeInDown 1s ease;
+            animation: fadeInDown 1.2s ease;
         }
 
         .hero p {
             font-size: 1.2rem;
-            margin-bottom: 2rem;
-            max-width: 600px;
-            animation: fadeInUp 1s ease;
+            font-weight: 300;
+            margin-bottom: 2.5rem;
+            max-width: 650px;
+            animation: fadeInUp 1.2s ease;
+            line-height: 1.8;
         }
 
         .btn {
             display: inline-block;
-            padding: 12px 30px;
+            padding: 14px 36px;
             background-color: var(--brand-orange);
             color: var(--white);
             text-decoration: none;
-            font-weight: bold;
+            font-family: 'Lato', sans-serif;
+            font-weight: 700;
             text-transform: uppercase;
-            border-radius: 3px;
-            transition: background-color 0.3s, transform 0.3s;
+            letter-spacing: 1.5px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(198, 113, 22, 0.3);
         }
 
         .btn:hover {
             background-color: #a55d12;
-            transform: translateY(-3px);
+            transform: translateY(-4px);
+            box-shadow: 0 6px 20px rgba(198, 113, 22, 0.5);
         }
 
         /* --- Sections Γενικά --- */
         section {
-            padding: 5rem 5%;
+            padding: 6rem 5%;
+            overflow: hidden;
         }
 
         .section-title {
             text-align: center;
-            font-size: 2.5rem;
+            font-size: 3rem;
+            font-weight: 700;
             color: var(--brand-dark);
-            margin-bottom: 3rem;
+            margin-bottom: 3.5rem;
             position: relative;
         }
 
         .section-title::after {
             content: '';
             display: block;
-            width: 60px;
+            width: 70px;
             height: 3px;
             background-color: var(--brand-orange);
-            margin: 10px auto 0;
+            margin: 15px auto 0;
+            border-radius: 2px;
         }
 
-        /* --- Portfolio / Services Grid --- */
+        /* --- Εφέ Fade In στο Scroll --- */
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(50px);
+            visibility: hidden;
+            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            will-change: opacity, visibility;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: none;
+            visibility: visible;
+        }
+
+        /* --- Portfolio / Services Grid (2 x 2) --- */
         .portfolio-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-            max-width: 1200px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2.5rem;
+            max-width: 1000px;
             margin: 0 auto;
         }
 
         .portfolio-item {
             position: relative;
-            height: 350px;
+            height: 380px;
             overflow: hidden;
             text-decoration: none;
             background-color: var(--brand-dark);
-            border-radius: 4px;
+            border-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
 
         .portfolio-item .bg-img {
             position: absolute;
-            top: 0; left: 0; width: 100%; height: 100%;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             background-size: cover;
             background-position: center;
-            transition: transform 0.6s ease, opacity 0.4s;
-            opacity: 0.7;
+            transition: transform 0.7s ease, opacity 0.4s ease;
+            opacity: 0.75;
         }
 
         .portfolio-item:hover .bg-img {
-            transform: scale(1.1);
-            opacity: 0.4; /* Σκοτεινιάζει στο hover */
+            transform: scale(1.12);
+            opacity: 0.3;
         }
 
         .portfolio-item .content {
@@ -199,33 +250,164 @@
         }
 
         .portfolio-item h3 {
-            font-size: 1.8rem;
-            margin-bottom: 10px;
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
             border-bottom: 2px solid var(--brand-orange);
-            padding-bottom: 5px;
+            padding-bottom: 8px;
         }
 
-        /* Βασικοί τίτλοι που φαίνονται ΠΡΙΝ το hover (για usability) */
+        .portfolio-item p {
+            font-family: 'Lato', sans-serif;
+            font-weight: 300;
+            letter-spacing: 1px;
+        }
+
         .portfolio-item .title-always {
             position: absolute;
-            bottom: 20px;
-            left: 20px;
+            bottom: 25px;
+            left: 25px;
             color: var(--white);
-            font-size: 1.5rem;
-            font-weight: bold;
+            font-size: 1.8rem;
+            font-weight: 600;
             z-index: 1;
             transition: opacity 0.3s;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
 
         .portfolio-item:hover .title-always {
             opacity: 0;
         }
 
+        /* --- Section: Τα Σχέδια Μας & Marquee Sliders --- */
+        .designs-section {
+            background-color: #111;
+            color: var(--white);
+        }
+
+        .designs-section .section-title {
+            color: var(--white);
+        }
+
+        .marquee-container {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            overflow: hidden;
+            width: 100%;
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .marquee-track {
+            display: flex;
+            gap: 20px;
+            width: max-content;
+        }
+
+        .marquee-track.paused {
+            animation-play-state: paused;
+        }
+
+        /* Το background overlay (frame) που καλύπτει την οθόνη */
+        .modal-overlay {
+            display: none;
+            /* Κρυφό εξ αρχής */
+            position: fixed;
+            z-index: 9999;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.85);
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        /* Η μεγάλη εικόνα στο κέντρο */
+        .modal-content {
+            max-width: 90%;
+            max-height: 90vh;
+            object-fit: contain;
+            border-radius: 8px;
+            box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+            cursor: default;
+        }
+
+        /* Το κουμπί "Χ" πάνω δεξιά */
+        .modal-close {
+            position: absolute;
+            top: 20px;
+            right: 35px;
+            color: #fff;
+            font-size: 40px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .modal-close:hover {
+            color: #f1f1f1;
+        }
+
+        /* Να δείχνει ότι οι εικόνες στο marquee είναι clickable */
+        .marquee-item img {
+            cursor: pointer;
+        }
+
+        .marquee-left {
+            animation: scrollLeft 35s linear infinite;
+        }
+
+        .marquee-right {
+            animation: scrollRight 35s linear infinite;
+        }
+
+        .marquee-item {
+            width: 320px;
+            height: 200px;
+            border-radius: 6px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+            flex-shrink: 0;
+        }
+
+        .marquee-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .marquee-item img:hover {
+            transform: scale(1.05);
+        }
+
+        @keyframes scrollLeft {
+            0% {
+                transform: translateX(0);
+            }
+
+            100% {
+                transform: translateX(-50%);
+            }
+        }
+
+        @keyframes scrollRight {
+            0% {
+                transform: translateX(-50%);
+            }
+
+            100% {
+                transform: translateX(0);
+            }
+        }
+
         /* --- About Section --- */
         .about-content {
             display: flex;
             flex-wrap: wrap;
-            gap: 3rem;
+            gap: 4rem;
             max-width: 1200px;
             margin: 0 auto;
             align-items: center;
@@ -233,36 +415,48 @@
 
         .about-text {
             flex: 1;
-            min-width: 300px;
+            min-width: 320px;
+        }
+
+        .about-text h3 {
+            font-size: 2.2rem;
+            font-weight: 600;
+            margin-bottom: 1.5rem;
+            color: var(--brand-dark);
         }
 
         .about-text p {
-            margin-bottom: 1rem;
+            margin-bottom: 1.2rem;
             font-size: 1.1rem;
+            font-weight: 300;
+        }
+
+        .about-text strong {
+            font-weight: 700;
         }
 
         .about-image {
             flex: 1;
-            min-width: 300px;
+            min-width: 320px;
         }
 
         .about-image img {
             width: 100%;
-            border-radius: 4px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 8px;
+            box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
         }
 
         /* --- Footer / Contact --- */
         footer {
             background-color: var(--brand-dark);
             color: var(--white);
-            padding: 4rem 5% 2rem;
+            padding: 5rem 5% 2rem;
         }
 
         .footer-content {
             display: flex;
             flex-wrap: wrap;
-            gap: 2rem;
+            gap: 3rem;
             max-width: 1200px;
             margin: 0 auto;
             justify-content: space-between;
@@ -270,43 +464,119 @@
 
         .footer-col h4 {
             color: var(--brand-orange);
-            margin-bottom: 1rem;
-            font-size: 1.2rem;
+            margin-bottom: 1.5rem;
+            font-size: 1.5rem;
+            font-weight: 600;
+            letter-spacing: 1px;
         }
 
         .footer-col p {
-            margin-bottom: 0.5rem;
-            color: #ccc;
+            margin-bottom: 0.8rem;
+            color: #d1d1d1;
+            font-weight: 300;
+        }
+
+        .footer-col a {
+            transition: color 0.3s ease;
+        }
+
+        .footer-col a:hover {
+            color: var(--brand-orange) !important;
         }
 
         .footer-bottom {
             text-align: center;
-            margin-top: 3rem;
-            padding-top: 1rem;
-            border-top: 1px solid #444;
-            color: #777;
+            margin-top: 4rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #333;
+            color: #888;
             font-size: 0.9rem;
+            font-weight: 300;
+            font-family: 'Lato', sans-serif;
         }
 
         /* Animations */
         @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(-40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
+
         @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(40px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         /* Responsive */
         @media (max-width: 768px) {
             nav ul {
-                display: none; /* Σε κανονικό site εδώ μπαίνει hamburger menu */
+                display: none;
             }
-            .hero h1 { font-size: 2.5rem; }
+
+            .hero h1 {
+                font-size: 3.2rem;
+            }
+
+            .section-title {
+                font-size: 2.5rem;
+            }
+
+            .portfolio-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation: Η εικόνα έρχεται ομαλά από τα αριστερά με fade-in */
+        @keyframes slideInFromLeft {
+            0% {
+                opacity: 0;
+                transform: translateX(-80px);
+            }
+
+            100% {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Αρχικά η εικόνα είναι αόρατη */
+        .about-image img.slide-in-img {
+            opacity: 0;
+        }
+
+        /* Όταν ενεργοποιείται, παίζει το animation */
+        .about-image img.slide-in-img.active {
+            animation: slideInFromLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        /* --- Εφέ Fade-In για τα κείμενα --- */
+        .fade-text {
+            opacity: 0;
+            transform: translateY(15px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        /* Όταν ενεργοποιούνται, γίνονται ορατά */
+        .fade-text.visible {
+            opacity: 1;
+            transform: translateY(0);
         }
     </style>
 </head>
+
 <body>
 
     <!-- Header & Navigation -->
@@ -316,6 +586,7 @@
             <ul>
                 <li><a href="#home">Αρχικη</a></li>
                 <li><a href="#services">Έργα</a></li>
+                <li><a href="#designs">Σχέδια</a></li>
                 <li><a href="#about">Σχετικα</a></li>
                 <li><a href="#contact">Επικοινωνια</a></li>
             </ul>
@@ -325,16 +596,16 @@
     <!-- Hero Section -->
     <section id="home" class="hero">
         <h1>Η Τέχνη του Ξύλου</h1>
-        <p>Σχεδιάζουμε και κατασκευάζουμε έπιπλα, ντουλάπες και κουζίνες υψηλής αισθητικής, προσαρμοσμένα απόλυτα στον χώρο σας.</p>
+        <p>Σχεδιάζουμε και κατασκευάζουμε έπιπλα, ντουλάπες και κουζίνες υψηλής αισθητικής, προσαρμοσμένα απόλυτα στον
+            χώρο σας.</p>
         <a href="#services" class="btn">Δειτε τα Εργα Μας</a>
     </section>
 
-    <!-- Services / Portfolio Section -->
-    <section id="services">
+    <!-- Services / Portfolio Section (2 x 2 Grid) -->
+    <section id="services" class="fade-in-section">
         <h2 class="section-title">Τα Έργα Μας</h2>
         <div class="portfolio-grid">
-            
-            <!-- Κατηγορία: Έπιπλα -->
+
             <a href="epipla.html" class="portfolio-item" id="epipla-box">
                 <div class="bg-img" id="epipla-bg"></div>
                 <div class="title-always">Έπιπλα</div>
@@ -344,7 +615,6 @@
                 </div>
             </a>
 
-            <!-- Κατηγορία: Ντουλάπες -->
             <a href="ntoulapes.html" class="portfolio-item" id="ntoulapes-box">
                 <div class="bg-img" id="ntoulapes-bg"></div>
                 <div class="title-always">Ντουλάπες</div>
@@ -354,7 +624,6 @@
                 </div>
             </a>
 
-            <!-- Κατηγορία 3 -->
             <a href="kouzines.html" class="portfolio-item" id="kouzines-box">
                 <div class="bg-img" id="kouzines-bg"></div>
                 <div class="title-always">Κουζίνες</div>
@@ -364,8 +633,7 @@
                 </div>
             </a>
 
-            <!-- Κατηγορία 4 -->
-           <a href="syntheta.html" class="portfolio-item" id="syntheta-box">
+            <a href="syntheta.html" class="portfolio-item" id="syntheta-box">
                 <div class="bg-img" id="syntheta-bg"></div>
                 <div class="title-always">Σύνθετα</div>
                 <div class="content">
@@ -377,35 +645,63 @@
         </div>
     </section>
 
+    <!-- Section: Τα Σχέδια Μας (Dual Marquee Sliders) -->
+    <section id="designs" class="designs-section fade-in-section">
+        <h2 class="section-title">Τα Σχέδια Μας</h2>
+        <div class="marquee-container">
+            <!-- Επάνω Λωρίδα: Αριστερά προς Δεξιά -->
+            <div class="marquee-track marquee-left" id="marqueeTop">
+                <!-- Javascript will duplicate items for seamless loop -->
+            </div>
+            <!-- Κάτω Λωρίδα: Δεξιά προς Αριστερά -->
+            <div class="marquee-track marquee-right" id="marqueeBottom">
+                <!-- Javascript will duplicate items for seamless loop -->
+            </div>
+        </div>
+    </section>
+    <!-- Modal Popup για τις εικόνες -->
+    <div id="imageModal" class="modal-overlay">
+        <span class="modal-close">&times;</span>
+        <img class="modal-content" id="modalImg" alt="Μεγέθυνση Σχεδίου">
+    </div>
+
     <!-- About Section -->
-    <section id="about" style="background-color: var(--white);">
+    <!-- About Section -->
+    <section id="about" class="fade-in-section" style="background-color: var(--white);">
         <h2 class="section-title">Σχετικά Με Εμάς</h2>
         <div class="about-content">
             <div class="about-image">
-                <img src="src/logo.jpg" alt="Το Εργαστήριο μας">
+                <img src="src/logo.jpg" alt="Το Εργαστήριο μας" class="slide-in-img">
             </div>
             <div class="about-text">
-                <h3 style="font-size: 1.8rem; margin-bottom: 1rem; color: var(--brand-dark);">Ποιότητα & Λεπτομέρεια</h3>
-                <p>Στο <strong>Avramidis Woodlab</strong>, η ξυλουργική δεν είναι απλώς μια δουλειά, είναι το πάθος μας. Με πολυετή εμπειρία στον χώρο του ξύλου, αναλαμβάνουμε τον πλήρη σχεδιασμό και την κατασκευή για τον οικιακό ή επαγγελματικό σας χώρο.</p>
-                <p>Χρησιμοποιούμε υλικά κορυφαίας ποιότητας, συνδυάζοντας παραδοσιακές τεχνικές με σύγχρονο μηχανολογικό εξοπλισμό, ώστε το αποτέλεσμα να είναι άρτιο, ανθεκτικό στον χρόνο και απόλυτα εναρμονισμένο με το προσωπικό σας γούστο.</p>
+                <h3 class="fade-text">Ποιότητα & Λεπτομέρεια</h3>
+                <p class="fade-text">Στο <strong>Avramidis Woodlab</strong>, η ξυλουργική δεν είναι απλώς μια δουλειά,
+                    είναι το πάθος μας. Με πολυετή εμπειρία στον χώρο του ξύλου, αναλαμβάνουμε τον πλήρη σχεδιασμό και
+                    την κατασκευή για τον οικιακό ή επαγγελματικό σας χώρο.</p>
+                <p class="fade-text">Χρησιμοποιούμε υλικά κορυφαίας ποιότητας, συνδυάζοντας παραδοσιακές τεχνικές με
+                    σύγχρονο μηχανολογικό εξοπλισμό, ώστε το αποτέλεσμα να είναι άρτιο, ανθεκτικό στον χρόνο και απόλυτα
+                    εναρμονισμένο με το προσωπικό σας γούστο.</p>
             </div>
         </div>
     </section>
 
     <!-- Footer / Contact Section -->
-    <footer id="contact">
+    <footer id="contact" class="fade-in-section">
         <div class="footer-content">
             <div class="footer-col">
                 <h4>Avramidis Woodlab</h4>
                 <p>Custom Woodworking & Design</p>
-                <p style="margin-top: 1rem;">Ακολουθήστε μας:</p>
+                <p style="margin-top: 1.5rem;">Ακολουθήστε μας:</p>
                 <p>
-                    <a href="https://www.instagram.com/avramidis_woodlab/" style="color: #ccc; text-decoration: none; margin-right: 10px;">Instagram</a>
+                    <a href="https://www.instagram.com/avramidis_woodlab/"
+                        style="color: #ccc; text-decoration: none; margin-right: 10px;">Instagram</a>
                 </p>
             </div>
             <div class="footer-col">
                 <h4>Επικοινωνία</h4>
-                <p>  <a href="https://maps.app.goo.gl/xhuZqXEkmLkNC3T28" style="color: #ccc; text-decoration: none; margin-right: 10px;">📍 Διαλογή, Θεσσαλονίκη, 57008</a></p>  
+                <p> <a href="https://maps.app.goo.gl/xhuZqXEkmLkNC3T28"
+                        style="color: #ccc; text-decoration: none; margin-right: 10px;">📍 Διαλογή, Θεσσαλονίκη,
+                        57008</a></p>
                 <p>📞 +30 6985992118</p>
                 <p>📞 +30 6937526419</p>
                 <p>✉️ avramidiswoodlab@gmail.com</p>
@@ -421,9 +717,9 @@
         </div>
     </footer>
 
-    <!-- JavaScript για το Navbar Effect (γίνεται σκούρο στο scroll) -->
     <script>
-        window.addEventListener('scroll', function() {
+        // Λειτουργία Navbar Effect (γίνεται σκούρο στο scroll)
+        window.addEventListener('scroll', function () {
             const header = document.getElementById('header');
             if (window.scrollY > 50) {
                 header.classList.add('scrolled');
@@ -431,67 +727,205 @@
                 header.classList.remove('scrolled');
             }
         });
-        document.addEventListener('DOMContentLoaded', function() {
+
+        document.addEventListener('DOMContentLoaded', function () {
+
+            // --- Αυτόματη Δημιουργία Εικόνων στις Λωρίδες Σχεδίων ---
+            const designImages = [
+                'src/sxedia/d1.jpg',
+                'src/sxedia/d2.jpg',
+                'src/sxedia/d3.jpg',
+                'src/sxedia/d4.jpg',
+                'src/sxedia/d5.jpg'
+            ];
+            // Αν έχετε συγκεκριμένα ονόματα αρχείων, μπορείτε να τα προσθέσετε. 
+            // Εδώ χρησιμοποιείται γενική ακολουθία d1.jpg εώς d5.jpg (ή επαναλαμβάνεται η d.jpg αν υπάρχει μόνο μία).
+            const imagesList = ['src/sxedia/d1.jpg', 'src/sxedia/d2.jpg', 'src/sxedia/d3.jpg', 'src/sxedia/d4.jpg', 'src/sxedia/d5.jpg', 'src/sxedia/d6.jpg'];
+
+            function populateMarquee(trackId) {
+                const track = document.getElementById(trackId);
+                if (!track) return;
+
+                // Διπλασιάζουμε τα στοιχεία για να γίνεται απρόσκοπτα το loop
+                let htmlContent = '';
+                for (let i = 0; i < 2; i++) {
+                    imagesList.forEach(imgSrc => {
+                        htmlContent += `
+                            <div class="marquee-item">
+                                <img src="${imgSrc}" alt="Σχέδιο Woodlab">
+                            </div>
+                        `;
+                    });
+                }
+                track.innerHTML = htmlContent;
+            }
+
+            populateMarquee('marqueeTop');
+            populateMarquee('marqueeBottom');
+
+            // --- Λειτουργικότητα Pop-up & Παύσης Καροζέλ ---
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('modalImg');
+            const closeBtn = document.querySelector('.modal-close');
+            const tracks = document.querySelectorAll('.marquee-track');
+
+            // Προσθήκη event click σε κάθε εικόνα του marquee
+            document.querySelectorAll('.marquee-item img').forEach(img => {
+                img.addEventListener('click', () => {
+                    // 1. Σταματάμε την κίνηση και στις δύο λωρίδες
+                    tracks.forEach(track => track.classList.add('paused'));
+
+                    // 2. Ανοίγουμε το modal με τη συγκεκριμένη εικόνα
+                    modal.style.display = 'flex';
+                    modalImg.src = img.src;
+                });
+            });
+
+            // Συνάρτηση κλεισίματος του modal
+            function closeModal() {
+                modal.style.display = 'none';
+                // Ξαναξεκινούμε την κίνηση στις λωρίδες
+                tracks.forEach(track => track.classList.remove('paused'));
+            }
+
+            // Κλείσιμο με το "X"
+            closeBtn.addEventListener('click', closeModal);
+
+            // Κλείσιμο με κλικ οπουδήποτε έξω από την εικόνα (στο σκοτεινό background)
+            modal.addEventListener('click', (e) => {
+                if (e.target === modal) {
+                    closeModal();
+                }
+            });
+
+            // Κλείσιμο και με το κουμπί Escape στο πληκτρολόγιο
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && modal.style.display === 'flex') {
+                    closeModal();
+                }
+            });
+
+            // --- 1. Κοινή Συνάρτηση για Ομαλό (Αργό) Scroll ---
+            function smoothScrollTo(targetElement, duration = 1200) {
+                const headerHeight = document.getElementById('header').offsetHeight;
+                const targetPosition = targetElement.offsetTop - headerHeight;
+                const startPosition = window.pageYOffset;
+                const distance = targetPosition - startPosition;
+                let startTime = null;
+
+                function animation(currentTime) {
+                    if (startTime === null) startTime = currentTime;
+                    const timeElapsed = currentTime - startTime;
+                    const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
+                    window.scrollTo(0, run);
+                    if (timeElapsed < duration) {
+                        requestAnimationFrame(animation);
+                    }
+                }
+
+                function easeInOutQuad(t, b, c, d) {
+                    t /= d / 2;
+                    if (t < 1) return c / 2 * t * t + b;
+                    t--;
+                    return -c / 2 * (t * (t - 2) - 1) + b;
+                }
+
+                requestAnimationFrame(animation);
+            }
+
+            // --- 2. Εφαρμογή Scroll στο Κεντρικό Κουμπί ---
             const scrollBtn = document.querySelector('.hero .btn');
             if (scrollBtn) {
-                scrollBtn.addEventListener('click', function(e) {
+                scrollBtn.addEventListener('click', function (e) {
                     e.preventDefault();
                     const targetSection = document.getElementById('services');
-                    const targetPosition = targetSection.offsetTop + (targetSection.offsetHeight / 2) - (window.innerHeight / 2);
-                    const startPosition = window.pageYOffset;
-                    const distance = targetPosition - startPosition;
-
-                    let duration = 1500; // Διάρκεια σε milliseconds (1.5 δευτερόλεπτο)
-                    let startTime = null;
-
-                    function animation(currentTime) {
-                        if (startTime === null) startTime = currentTime;
-                        const timeElapsed = currentTime - startTime;
-                        const run = easeInOutQuad(timeElapsed, startPosition, distance, duration);
-                        window.scrollTo(0, run);
-                        if (timeElapsed < duration) {
-                            requestAnimationFrame(animation);
-                        }
-                    }
-
-                    function easeInOutQuad(t, b, c, d) {
-                        t /= d / 2;
-                        if (t < 1) return c / 2 * t * t + b;
-                        t--;
-                        return -c / 2 * (t * (t - 2) - 1) + b;
-                    }
-
-                    requestAnimationFrame(animation);
+                    smoothScrollTo(targetSection);
                 });
             }
 
-            // Ντουλάπες (Υποθέτουμε 4 εικόνες)
+            // --- 3. Εφαρμογή Scroll στα Links του Μενού ---
+            const navLinks = document.querySelectorAll('nav ul li a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href').substring(1);
+                    const targetSection = document.getElementById(targetId);
+
+                    if (targetSection) {
+                        smoothScrollTo(targetSection);
+                    }
+                });
+            });
+
+            // --- Fade-in εφέ με Intersection Observer ---
+            const faders = document.querySelectorAll('.fade-in-section');
+            const appearOptions = {
+                threshold: 0.15,
+                rootMargin: "0px 0px -50px 0px"
+            };
+
+            const appearOnScroll = new IntersectionObserver(function (entries, observer) {
+                entries.forEach(entry => {
+                    if (!entry.isIntersecting) {
+                        return;
+                    } else {
+                        entry.target.classList.add('is-visible');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, appearOptions);
+
+            faders.forEach(fader => {
+                appearOnScroll.observe(fader);
+            });
+
+            // --- Backgrounds Έργων ---
             const ntoulapesBg = document.getElementById('ntoulapes-bg');
-            if (ntoulapesBg) {
-                const randomNtoulapa = Math.floor(Math.random() * 4) + 1;
-                ntoulapesBg.style.backgroundImage = `url('src/ntoulapes/w${randomNtoulapa}.jpg')`;
-            }
+            ntoulapesBg.style.backgroundImage = `url('src/ntoulapes/w1.jpg')`;
 
-            // Έπιπλα (Υποθέτουμε 4 εικόνες, άλλαξε το 4 αν έχεις περισσότερες/λιγότερες)
             const epiplaBg = document.getElementById('epipla-bg');
-            if (epiplaBg) {
-                const randomEpiplo = Math.floor(Math.random() * 4) + 1;
-                epiplaBg.style.backgroundImage = `url('src/epipla/e${randomEpiplo}.jpg')`;
-            }
-            // --- Τυχαίο background στις Κουζίνες (1 έως 6) ---
-            const kouzinesBg = document.getElementById('kouzines-bg');
-            if (kouzinesBg) {
-                const randomImageNumber = Math.floor(Math.random() * 6) + 1;
-                kouzinesBg.style.backgroundImage = `url('src/kouzines/k${randomImageNumber}.jpg')`;
-            }
+            epiplaBg.style.backgroundImage = `url('src/epipla/e6.jpg')`;
 
-            // --- Τυχαίο background στα Σύνθετα (1 έως 4) ---
+            const kouzinesBg = document.getElementById('kouzines-bg');
+            kouzinesBg.style.backgroundImage = `url('src/kouzines/k2.jpg')`;
+
             const synthetaBg = document.getElementById('syntheta-bg');
-            if (synthetaBg) {
-                const randomSyntheto = Math.floor(Math.random() * 4) + 1;
-                synthetaBg.style.backgroundImage = `url('src/syntheta/s${randomSyntheto}.jpg')`;
+            synthetaBg.style.backgroundImage = `url('src/syntheta/s2.jpg')`;
+
+        });
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const aboutSection = document.getElementById("about");
+            const logoImg = document.querySelector(".slide-in-img");
+            const fadeTexts = document.querySelectorAll(".fade-text");
+
+            let animated = false;
+
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting && !animated) {
+                        animated = true;
+
+                        // 1. Ξεκινάει το slide-in της εικόνας
+                        if (logoImg) {
+                            logoImg.classList.add("active");
+                        }
+
+                        // 2. Εμφανίζουμε τα κείμενα διαδοχικά (fade-in ένα-ένα)
+                        fadeTexts.forEach((el, index) => {
+                            setTimeout(() => {
+                                el.classList.add("visible");
+                            }, 300 + (index * 400)); // 300ms καθυστέρηση για την αρχή, +400ms για κάθε επόμενο
+                        });
+                    }
+                });
+            }, { threshold: 0.3 });
+
+            if (aboutSection) {
+                observer.observe(aboutSection);
             }
         });
     </script>
 </body>
+
 </html>
