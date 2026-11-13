@@ -1,0 +1,952 @@
+/* ==========================================================================
+   AVRAMIDIS WOODLAB - Κοινό Stylesheet
+   Χρησιμοποιείται από: index.html, epipla.html, ntoulapes.html,
+                        kouzines.html, syntheta.html
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   1. Μεταβλητές & Καθαρισμός
+   -------------------------------------------------------------------------- */
+:root {
+    --brand-orange: #c67116;
+    --brand-dark: #1a1a1a;
+    --brand-gray: #4a4a4a;
+    --brand-light: #f8f9fa;
+    --white: #ffffff;
+    --brand-orange-dark: #a55d12;
+    --surface-dark: #111;
+    --text-light: #ccc;
+    --text-muted: #d1d1d1;
+    --text-dim: #888;
+    --border-dark: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Lato', sans-serif;
+    color: var(--brand-gray);
+    background-color: var(--brand-light);
+    line-height: 1.7;
+    font-size: 16px;
+}
+
+/* Εφαρμογή γραμματοσειράς Playfair Display στους τίτλους */
+h1,
+h2,
+h3,
+h4,
+.logo {
+    font-family: 'Playfair Display', serif;
+}
+
+/* --------------------------------------------------------------------------
+   2. Animations
+   -------------------------------------------------------------------------- */
+@keyframes fadeInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(40px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scrollLeft {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(-50%);
+    }
+}
+
+@keyframes scrollRight {
+    0% {
+        transform: translateX(-50%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+/* Η εικόνα έρχεται ομαλά από τα αριστερά με fade-in */
+@keyframes slideInFromLeft {
+    0% {
+        opacity: 0;
+        transform: translateX(-80px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* ==========================================================================
+   ΚΥΡΙΑ ΣΕΛΙΔΑ (index.html)
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   3. Navigation Bar
+   -------------------------------------------------------------------------- */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: transparent;
+    z-index: 1000;
+    transition: background-color 0.4s ease, padding 0.4s ease, box-shadow 0.4s ease;
+}
+
+header.scrolled {
+    background-color: rgba(26, 26, 26, 0.95);
+    backdrop-filter: blur(5px);
+    padding: 1rem 5%;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--white);
+    text-decoration: none;
+    letter-spacing: 1px;
+}
+
+.logo span {
+    color: var(--brand-orange);
+    font-style: italic;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    gap: 2.5rem;
+}
+
+nav ul li a {
+    color: var(--white);
+    text-decoration: none;
+    font-weight: 400;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    transition: color 0.3s ease;
+    position: relative;
+}
+
+nav ul li a:hover {
+    color: var(--brand-orange);
+}
+
+/* --------------------------------------------------------------------------
+   4. Hero Section
+   -------------------------------------------------------------------------- */
+.hero {
+    min-height: 100vh;
+    min-height: 100svh;
+    background: linear-gradient(rgba(26, 26, 26, 0.75), rgba(26, 26, 26, 0.75)),
+        url('src/syntheta/s4.jpg') center/cover no-repeat;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    color: var(--white);
+    padding: 80px 20px 40px 20px; /* Προσθήκηπάνω padding για να μην πέφτει πάνω στο menu/logo */
+    box-sizing: border-box;
+}
+
+.hero h1 {
+    font-size: clamp(2.2rem, 5vw, 3.5rem); /* Προσαρμόζεται αυτόματα σε κινητό/desktop */
+    font-weight: 700;
+    margin-bottom: 1rem;
+    letter-spacing: 1px;
+    line-height: 1.2;
+    animation: fadeInDown 1.2s ease;
+}
+
+.hero p {
+    font-size: clamp(1rem, 1.8vw, 1.2rem);
+    font-weight: 300;
+    margin-bottom: 2rem;
+    max-width: 650px;
+    animation: fadeInUp 1.2s ease;
+    line-height: 1.6;
+}
+
+/* Αν τα κουμπιά σου είναι μέσα σε <p> ή σε wrapper, τα κάνουμε flex */
+.hero p:has(.btn), 
+.hero-buttons { /* Αν έχεις βάλει κάποιο div wrapper, πιάνει κι εδώ */
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 0;
+}
+
+.btn {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: var(--brand-orange);
+    color: var(--white);
+    text-decoration: none;
+    font-family: 'Lato', sans-serif;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 15px rgba(198, 113, 22, 0.3);
+}
+
+.btn:hover {
+    background-color: var(--brand-orange-dark);
+    transform: translateY(-4px);
+    box-shadow: 0 6px 20px rgba(198, 113, 22, 0.5);
+}
+
+/* Responsive για κινητά */
+@media (max-width: 768px) {
+    .hero {
+        padding: 100px 16px 40px 16px;
+    }
+
+    .hero p:has(.btn) {
+        flex-direction: column; /* Τα κουμπιά μπαίνουν το ένα κάτω από το άλλο στο κινητό */
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto;
+    }
+
+    .hero .btn {
+        width: 100%; /* Γεμίζουν ωραία το πλάτος για εύκολο tap */
+        text-align: center;
+        padding: 14px 20px;
+    }
+}
+/* --------------------------------------------------------------------------
+   5. Sections Γενικά
+   -------------------------------------------------------------------------- */
+section {
+    padding: 6rem 5%;
+    overflow: hidden;
+}
+
+.section-title {
+    text-align: center;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--brand-dark);
+    margin-bottom: 3.5rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    display: block;
+    width: 70px;
+    height: 3px;
+    background-color: var(--brand-orange);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+/* Εφέ Fade In στο Scroll */
+.js .fade-in-section {
+    opacity: 0;
+    transform: translateY(50px);
+    visibility: hidden;
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+    will-change: opacity, transform;
+}
+
+.js .fade-in-section.is-visible {
+    opacity: 1;
+    transform: none;
+    visibility: visible;
+}
+
+/* --------------------------------------------------------------------------
+   6. Portfolio / Services Grid (2 x 2)
+   -------------------------------------------------------------------------- */
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2.5rem;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+.portfolio-item {
+    position: relative;
+    height: 380px;
+    overflow: hidden;
+    text-decoration: none;
+    background-color: var(--brand-dark);
+    border-radius: 8px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+.portfolio-item .bg-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    transition: transform 0.7s ease, opacity 0.4s ease;
+    opacity: 0.75;
+}
+
+.portfolio-item:hover .bg-img {
+    transform: scale(1.12);
+    opacity: 0.3;
+}
+
+.portfolio-item .content {
+    position: relative;
+    z-index: 2;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: var(--white);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.portfolio-item:hover .content {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.portfolio-item h3 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+    border-bottom: 2px solid var(--brand-orange);
+    padding-bottom: 8px;
+}
+
+.portfolio-item p {
+    font-family: 'Lato', sans-serif;
+    font-weight: 300;
+    letter-spacing: 1px;
+}
+
+.portfolio-item .title-always {
+    position: absolute;
+    bottom: 25px;
+    left: 25px;
+    color: var(--white);
+    font-size: 1.8rem;
+    font-weight: 600;
+    z-index: 1;
+    transition: opacity 0.3s;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.portfolio-item:hover .title-always {
+    opacity: 0;
+}
+
+/* --------------------------------------------------------------------------
+   7. Τα Σχέδια Μας & Marquee Sliders
+   -------------------------------------------------------------------------- */
+.designs-section {
+    background-color: var(--surface-dark);
+    color: var(--white);
+}
+
+.designs-section .section-title {
+    color: var(--white);
+}
+
+.marquee-container {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    overflow: hidden;
+    width: 100%;
+    position: relative;
+    padding: 1rem 0;
+}
+
+.marquee-track {
+    display: flex;
+    gap: 20px;
+    width: max-content;
+}
+
+.marquee-track.paused {
+    animation-play-state: paused;
+}
+
+.marquee-left {
+    animation: scrollLeft 35s linear infinite;
+}
+
+.marquee-right {
+    animation: scrollRight 35s linear infinite;
+}
+
+.marquee-item {
+    display: block;
+    padding: 0;
+    border: 0;
+    background: none;
+    width: 320px;
+    height: 200px;
+    border-radius: 6px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+}
+
+.marquee-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    cursor: pointer; /* Οι εικόνες είναι clickable */
+    transition: transform 0.4s ease;
+}
+
+.marquee-item img:hover {
+    transform: scale(1.05);
+}
+
+/* --------------------------------------------------------------------------
+   8. Modal Popup για τις εικόνες
+   -------------------------------------------------------------------------- */
+.modal {
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    max-height: none;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: var(--white);
+}
+
+.modal[open] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.modal::backdrop {
+    background-color: rgba(0, 0, 0, 0.85);
+}
+
+.modal-content {
+    max-width: 90%;
+    max-height: 90vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
+    cursor: default;
+}
+
+.modal-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    padding: 0 8px;
+    background: none;
+    border: 0;
+    color: var(--white);
+    font-size: 40px;
+    font-weight: bold;
+    line-height: 1.2;
+    cursor: pointer;
+}
+
+.modal-close:hover {
+    color: #f1f1f1;
+}
+
+/* Κλείδωμα scroll όταν είναι ανοιχτό το modal */
+body:has(.modal[open]) {
+    overflow: hidden;
+}
+
+/* --------------------------------------------------------------------------
+   9. About Section
+   -------------------------------------------------------------------------- */
+.about-section {
+    background-color: var(--white);
+}
+
+.about-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: center;
+}
+
+.about-text {
+    flex: 1;
+    min-width: 320px;
+}
+
+.about-text h3 {
+    font-size: 2.2rem;
+    font-weight: 600;
+    margin-bottom: 1.5rem;
+    color: var(--brand-dark);
+}
+
+.about-text p {
+    margin-bottom: 1.2rem;
+    font-size: 1.1rem;
+    font-weight: 300;
+}
+
+.about-text strong {
+    font-weight: 700;
+}
+
+.about-image {
+    flex: 1;
+    min-width: 320px;
+}
+
+.about-image img {
+    width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.15);
+}
+
+/* Αρχικά η εικόνα είναι αόρατη */
+.js .about-image img.slide-in-img {
+    opacity: 0;
+}
+
+/* Όταν ενεργοποιείται, παίζει το animation */
+.about-image img.slide-in-img.active {
+    animation: slideInFromLeft 1.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Εφέ Fade-In για τα κείμενα */
+.js .fade-text {
+    opacity: 0;
+    transform: translateY(15px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.js .fade-text.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* --------------------------------------------------------------------------
+   10. Footer / Contact
+   -------------------------------------------------------------------------- */
+footer {
+    background-color: var(--brand-dark);
+    color: var(--white);
+    padding: 5rem 5% 2rem;
+}
+
+.footer-content {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    justify-content: space-between;
+}
+
+.footer-col h4 {
+    color: var(--brand-orange);
+    margin-bottom: 1.5rem;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: 1px;
+}
+
+.footer-col p {
+    margin-bottom: 0.8rem;
+    color: var(--text-muted);
+    font-weight: 300;
+}
+
+.footer-col .footer-follow {
+    margin-top: 1.5rem;
+}
+
+.footer-col a {
+    color: var(--text-light);
+    text-decoration: none;
+    margin-right: 10px;
+    transition: color 0.3s ease;
+}
+
+.footer-col a:hover {
+    color: var(--brand-orange);
+}
+
+.footer-bottom {
+    text-align: center;
+    margin-top: 4rem;
+    padding-top: 1.5rem;
+    border-top: 1px solid var(--border-dark);
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    font-weight: 300;
+    font-family: 'Lato', sans-serif;
+}
+
+/* ==========================================================================
+   ΣΕΛΙΔΕΣ GALLERY (epipla, ntoulapes, kouzines, syntheta)
+   Ενεργοποιούνται με <body class="gallery-page">
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   11. Gallery: Βάση σελίδας
+   -------------------------------------------------------------------------- */
+.gallery-page {
+    height: 100vh;
+    height: 100svh;
+    background-color: var(--brand-dark);
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    line-height: normal;
+    overflow: hidden; /* Αποτρέπει το κάθετο scroll */
+}
+
+.gallery-page h1 {
+    font-family: inherit;
+}
+
+/* --------------------------------------------------------------------------
+   12. Gallery: Top Bar
+   -------------------------------------------------------------------------- */
+.top-bar {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), transparent);
+}
+
+.top-bar h1 {
+    color: var(--white);
+    font-size: 1.2rem;
+    margin: 0;
+    font-weight: 300;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+}
+
+.close-btn {
+    color: var(--white);
+    text-decoration: none;
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    padding: 8px 16px;
+    border: 1px solid var(--white);
+    border-radius: 4px;
+    transition: background-color 0.3s, border-color 0.3s;
+    white-space: nowrap;
+    background-color: rgba(0, 0, 0, 0.3);
+    flex-shrink: 0;
+}
+
+.close-btn:hover {
+    background-color: var(--brand-orange);
+    border-color: var(--brand-orange);
+}
+
+/* --------------------------------------------------------------------------
+   13. Gallery: Slider
+   -------------------------------------------------------------------------- */
+.slider-container {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    height: 100svh;
+    touch-action: pan-y;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.slider-image {
+    max-width: 90%;
+    max-height: 80vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 15px 40px rgba(0, 0, 0, 0.5);
+    transition: opacity 0.4s ease-in-out;
+}
+
+/* Βελάκια Πλοήγησης */
+.nav-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: var(--white);
+    border: none;
+    font-size: 2rem;
+    padding: 15px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    z-index: 5;
+}
+
+.nav-btn:hover {
+    background-color: var(--brand-orange);
+}
+
+.prev {
+    left: 2%;
+}
+
+.next {
+    right: 2%;
+}
+
+/* Μετρητής εικόνων (π.χ. 1 / 6) */
+.counter {
+    position: absolute;
+    bottom: 20px;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1.2rem;
+    letter-spacing: 2px;
+}
+
+/* ==========================================================================
+   Προσβασιμότητα & Επιπλέον στοιχεία
+   ========================================================================== */
+:focus-visible {
+    outline: 2px solid var(--brand-orange);
+    outline-offset: 3px;
+}
+
+/* Backgrounds των έργων (πριν τα όριζε η JavaScript) */
+#epipla-bg { background-image: url('src/epipla/e6.jpg'); }
+#ntoulapes-bg { background-image: url('src/ntoulapes/w1.jpg'); }
+#kouzines-bg { background-image: url('src/kouzines/k2.jpg'); }
+#syntheta-bg { background-image: url('src/syntheta/s2.jpg'); }
+
+/* Κουμπί mobile menu (κρυφό σε desktop) */
+.menu-toggle {
+    display: none;
+    position: relative;
+    width: 44px;
+    height: 44px;
+    background: none;
+    border: 0;
+    cursor: pointer;
+}
+
+.menu-toggle__bar,
+.menu-toggle__bar::before,
+.menu-toggle__bar::after {
+    position: absolute;
+    left: 10px;
+    width: 24px;
+    height: 2px;
+    background-color: var(--white);
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+
+.menu-toggle__bar {
+    top: 21px;
+}
+
+.menu-toggle__bar::before,
+.menu-toggle__bar::after {
+    content: '';
+    left: 0;
+}
+
+.menu-toggle__bar::before {
+    top: -7px;
+}
+
+.menu-toggle__bar::after {
+    top: 7px;
+}
+
+.menu-open .menu-toggle__bar {
+    background-color: transparent;
+}
+
+.menu-open .menu-toggle__bar::before {
+    transform: translateY(7px) rotate(45deg);
+}
+
+.menu-open .menu-toggle__bar::after {
+    transform: translateY(-7px) rotate(-45deg);
+}
+
+/* ==========================================================================
+   Responsive
+   ========================================================================== */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: block;
+    }
+
+    header.menu-open {
+        background-color: rgba(26, 26, 26, 0.97);
+    }
+
+    nav {
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        max-height: 0;
+        overflow: hidden;
+        visibility: hidden;
+        background-color: rgba(26, 26, 26, 0.97);
+        transition: max-height 0.4s ease, visibility 0s 0.4s;
+    }
+
+    .menu-open nav {
+        max-height: 400px;
+        visibility: visible;
+        transition: max-height 0.4s ease, visibility 0s;
+    }
+
+    nav ul {
+        flex-direction: column;
+        gap: 0;
+        padding: 0.5rem 5% 1.5rem;
+    }
+
+    nav ul li a {
+        display: block;
+        padding: 0.9rem 0;
+    }
+
+    .hero h1 {
+        font-size: 3.2rem;
+    }
+
+    .section-title {
+        font-size: 2.5rem;
+    }
+
+    .portfolio-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* --------------------------------------------------------------------------
+   Gallery: fade, mobile & reduced motion
+   -------------------------------------------------------------------------- */
+.slider-image.is-fading {
+    opacity: 0.4;
+}
+
+@media (max-width: 600px) {
+    .top-bar {
+        padding: 1rem;
+    }
+
+    .top-bar h1 {
+        font-size: 1rem;
+    }
+
+    .close-btn {
+        padding: 6px 12px;
+        font-size: 0.8rem;
+    }
+
+    .slider-image {
+        max-width: 96%;
+    }
+
+    .nav-btn {
+        font-size: 1.4rem;
+        padding: 10px 14px;
+    }
+
+    .prev {
+        left: 1%;
+    }
+
+    .next {
+        right: 1%;
+    }
+}
+
+@media (max-width: 480px) {
+    .top-bar h1 .brand {
+        display: none;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero h1,
+    .hero p,
+    .marquee-left,
+    .marquee-right {
+        animation: none;
+    }
+
+    .marquee-container {
+        overflow-x: auto;
+    }
+
+    .js .fade-in-section,
+    .js .fade-text,
+    .slider-image,
+    .portfolio-item .bg-img {
+        transition: none;
+        transform: none;
+    }
+
+    .js .about-image img.slide-in-img.active {
+        animation-duration: 0.01s;
+    }
+}
